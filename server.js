@@ -14,6 +14,12 @@ server.get("/dogs", async (req, res) => {
   res.json(allDogs);
 });
 
+server.get("/dogs/:dogId", async (req, res) => {
+  const dogId = req.params.dogId;
+  const foundDog = await Dog.findById(dogId);
+  res.json(foundDog);
+});
+
 server.post("/dogs", async (req, res) => {
   const newDog = new Dog({
     name: req.body.name,
